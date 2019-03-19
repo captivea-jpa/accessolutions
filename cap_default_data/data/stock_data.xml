@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- MANAGE DEFAULT WAREHOUSES -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+    <!-- PARIS -->
+    <data noupdate="1">
+        <function name="write" model="ir.model.data">
+            <function name="search" model="ir.model.data">
+                <value eval="[('module', '=', 'stock'), ('name', '=', 'warehouse0')]"/>
+            </function>
+            <value eval="{'noupdate': False}"/>
+        </function>
+
+        <record model="stock.warehouse" id="stock.warehouse0">
+            <field name="name">Paris</field>
+            <field name="code">PAR</field>
+            <field name="partner_id" ref="base.main_partner"/>
+        </record>
+
+        <function name="write" model="ir.model.data">
+            <function name="search" model="ir.model.data">
+                <value eval="[('module', '=', 'stock'), ('name', '=', 'warehouse0')]"/>
+            </function>
+            <value eval="{'noupdate': True}"/>
+        </function>
+    </data>
+
+    <!-- TOULOUSE -->
+    <data noupdate="1">
+        <record model="stock.warehouse" id="stock_warehouse_02">
+            <field name="name">Toulouse</field>
+            <field name="code">TOU</field>
+            <field name="partner_id" ref="cap_default_data.res_partner_02"/>
+        </record>
+    </data>
+    
+    <!-- GRENOBLE -->
+    <data noupdate="1">
+        <record model="stock.warehouse" id="stock_warehouse_03">
+            <field name="name">Grenoble</field>
+            <field name="code">GRE</field>
+        </record>
+    </data>
+    
+    <!-- DIJON -->
+    <data noupdate="1">
+        <record model="stock.warehouse" id="stock_warehouse_04">
+            <field name="name">Dijon</field>
+            <field name="code">DIJ</field>
+        </record>
+    </data>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- MANAGE DEFAULT LOCATIONS -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+    <!-- RETOUR QUALITE -->
+    <data noupdate="1">
+        <record model="stock.location" id="stock_location_01">
+            <field name="name">Retour Qualité</field>
+            <field name="location_id" ref="stock.stock_location_locations_virtual"/>
+            <field name="usage">transit</field>
+        </record>
+    </data>
+
+    <!-- SAV -->
+    <data noupdate="1">
+        <record model="stock.location" id="stock_location_02">
+            <field name="name">SAV</field>
+            <field name="location_id" ref="stock.stock_location_locations_virtual"/>
+            <field name="return_location" eval="1"/>
+            <field name="usage">transit</field>
+        </record>
+    </data>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- MANAGE DEFAULT SEQUENCES -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+    <!-- OUTGOING SEQUENCE - DEFAULT -->
+    <data noupdate="1">
+        <record model="ir.sequence" id="outgoing_sequence_default">
+            <field name="name">Séquence Sortante (Défaut)</field>
+            <field name="prefix">BL-%(year)s-</field>
+            <field name="padding" eval="6"/>
+        </record>
+    </data>
+
+    <!-- OUTGOING SEQUENCE - PARIS -->
+    <data noupdate="1">
+        <record model="ir.sequence" id="outgoing_sequence_paris">
+            <field name="name">Séquence Sortante (Paris)</field>
+            <field name="prefix">BLP-%(year)s-</field>
+            <field name="padding" eval="6"/>
+        </record>
+    </data>
+
+    <!-- OUTGOING SEQUENCE - TOULOUSE -->
+    <data noupdate="1">
+        <record model="ir.sequence" id="outgoing_sequence_toulouse">
+            <field name="name">Séquence Sortante (Toulouse)</field>
+            <field name="prefix">BLT-%(year)s-</field>
+            <field name="padding" eval="6"/>
+        </record>
+    </data>
+
+    <!-- INCOMING SEQUENCE - DEFAULT -->
+    <data noupdate="1">
+        <record model="ir.sequence" id="incoming_sequence_default">
+            <field name="name">Séquence Entrante (Défaut)</field>
+            <field name="prefix">BR-%(year)s-</field>
+            <field name="padding" eval="6"/>
+        </record>
+    </data>
+
+    <!-- INCOMING SEQUENCE - PARIS -->
+    <data noupdate="1">
+        <record model="ir.sequence" id="incoming_sequence_paris">
+            <field name="name">Séquence Entrante (Paris)</field>
+            <field name="prefix">BRP-%(year)s-</field>
+            <field name="padding" eval="6"/>
+        </record>
+    </data>
+
+    <!-- INCOMING SEQUENCE - TOULOUSE -->
+    <data noupdate="1">
+        <record model="ir.sequence" id="incoming_sequence_toulouse">
+            <field name="name">Séquence Entrante (Toulouse)</field>
+            <field name="prefix">BRT-%(year)s-</field>
+            <field name="padding" eval="6"/>
+        </record>
+    </data>
+
+    <!-- INTERNAL SEQUENCE - DEFAULT -->
+    <data noupdate="1">
+        <record model="ir.sequence" id="internal_sequence_default">
+            <field name="name">Séquence Interne (Défaut)</field>
+            <field name="prefix">BT-%(year)s-</field>
+            <field name="padding" eval="6"/>
+        </record>
+    </data>
+
+    <!-- INTERNAL SEQUENCE - PARIS -->
+    <data noupdate="1">
+        <record model="ir.sequence" id="internal_sequence_paris">
+            <field name="name">Séquence Interne (Paris)</field>
+            <field name="prefix">BTP-%(year)s-</field>
+            <field name="padding" eval="6"/>
+        </record>
+    </data>
+
+    <!-- INTERNAL SEQUENCE - TOULOUSE -->
+    <data noupdate="1">
+        <record model="ir.sequence" id="internal_sequence_toulouse">
+            <field name="name">Séquence Interne (Toulouse)</field>
+            <field name="prefix">BTT-%(year)s-</field>
+            <field name="padding" eval="6"/>
+        </record>
+    </data>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- MANAGE DEFAULT STOCK PICKING TYPES -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+    <!-- SET OUTGOING SEQUENCE FOR PARIS TO DEFAULT OUTGOING SEQUENCE-->
+    <data noupdate="1">
+        <function name="write" model="stock.picking.type">
+            <function name="search" model="stock.picking.type">
+                <value eval="[('warehouse_id', '=', ref('stock.warehouse0')), ('code', '=', 'outgoing')]"/>
+            </function>
+            <value eval="{'sequence_id': ref('outgoing_sequence_default')}"/>
+        </function>
+    </data>
+
+    <!-- SET INCOMING SEQUENCE FOR PARIS TO PARIS INCOMING SEQUENCE -->
+    <data noupdate="1">
+        <function name="write" model="stock.picking.type">
+            <function name="search" model="stock.picking.type">
+                <value eval="[('warehouse_id', '=', ref('stock.warehouse0')), ('code', '=', 'incoming')]"/>
+            </function>
+            <value eval="{'sequence_id': ref('incoming_sequence_paris')}"/>
+        </function>
+    </data>
+
+    <!-- SET INTERNAL SEQUENCE FOR PARIS TO PARIS INTERNAL SEQUENCE -->
+    <data noupdate="1">
+        <function name="write" model="stock.picking.type">
+            <function name="search" model="stock.picking.type">
+                <value eval="[('warehouse_id', '=', ref('stock.warehouse0')), ('code', '=', 'internal')]"/>
+            </function>
+            <value eval="{'sequence_id': ref('internal_sequence_paris')}"/>
+        </function>
+    </data>
+
+    <!-- SET OUTGOING SEQUENCE FOR TOULOUSE TO DEFAULT OUTGOING SEQUENCE -->
+    <data noupdate="1">
+        <function name="write" model="stock.picking.type">
+            <function name="search" model="stock.picking.type">
+                <value eval="[('warehouse_id', '=', ref('stock_warehouse_02')), ('code', '=', 'outgoing')]"/>
+            </function>
+            <value eval="{'sequence_id': ref('outgoing_sequence_default')}"/>
+        </function>
+    </data>
+
+    <!-- SET INCOMING SEQUENCE FOR TOULOUSE TO TOULOUSE INCOMING SEQUENCE -->
+    <data noupdate="1">
+        <function name="write" model="stock.picking.type">
+            <function name="search" model="stock.picking.type">
+                <value eval="[('warehouse_id', '=', ref('stock_warehouse_02')), ('code', '=', 'incoming')]"/>
+            </function>
+            <value eval="{'sequence_id': ref('incoming_sequence_toulouse')}"/>
+        </function>
+    </data>
+
+    <!-- SET INTERNAL SEQUENCE FOR TOULOUSE TO TOULOUSE INTERNAL SEQUENCE -->
+    <data noupdate="1">
+        <function name="write" model="stock.picking.type">
+            <function name="search" model="stock.picking.type">
+                <value eval="[('warehouse_id', '=', ref('stock_warehouse_02')), ('code', '=', 'internal')]"/>
+            </function>
+            <value eval="{'sequence_id': ref('internal_sequence_toulouse')}"/>
+        </function>
+    </data>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- MANAGE DEFAULT PRINTED PDF FILENAME -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+    <!-- BON DE LIVRAISON -->
+    <data noupdate="1">
+        <function name="write" model="ir.actions.report">
+            <function name="search" model="ir.actions.report">
+                <value eval="[('report_name', '=', 'stock.report_deliveryslip')]"/>
+            </function>
+            <value eval="{'print_report_name': 'object.name'}"/>
+        </function>
+    </data>
+
+    <!-- BON DE PREPARATION AVEC CODE BARRE -->
+    <data noupdate="1">
+        <function name="write" model="ir.actions.report">
+            <function name="search" model="ir.actions.report">
+                <value eval="[('report_name', '=', 'stock.report_picking')]"/>
+            </function>
+            <value eval="{'print_report_name': 'object.name'}"/>
+        </function>
+    </data>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- MANAGE DEFAULT STOCK.LOCATION.ROUTE -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+    <!-- ROUTE FROM WAREHOUSES TO PARIS LOCATION -->
+    <data noupdate="1">
+        <record model="stock.location.route" id="stock_location_route_01">
+            <field name="name">Transfert entre entrepôts vers Paris</field>
+            <field name="product_selectable" eval="0"/>
+            <field name="warehouse_selectable" eval="1"/>
+            <field name="warehouse_ids" search="[('code', '=', 'TOU')]"/>
+        </record>
+    </data>
+
+    <!-- ROUTE FROM WAREHOUSES TO TOULOUSE LOCATION -->
+    <data noupdate="1">
+        <record model="stock.location.route" id="stock_location_route_02">
+            <field name="name">Transfert entre entrepôts vers Toulouse</field>
+            <field name="product_selectable" eval="0"/>
+            <field name="warehouse_selectable" eval="1"/>
+            <field name="warehouse_ids" search="[('code', '=', 'PAR')]"/>
+        </record>
+    </data>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- MANAGE DEFAULT STOCK.LOCATION.PATH -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+    <!-- PATH TO PARIS/STOCK -->
+    <data noupdate="1">
+        <record model="stock.location.path" id="stock_location_path_01">
+            <field name="name">To PARIS</field>
+            <field name="route_id" ref="stock_location_route_01"/>
+            <field name="location_from_id" search="[('name', '=', 'My Company: Transit Location'),
+            ('location_id.name', '=', 'Physical Locations')]"/>
+            <field name="location_dest_id" search="[('name', '=', 'Stock'), ('location_id.name', '=', 'PAR')]"/>
+            <field name="auto">manual</field>
+            <field name="picking_type_id" search="[('warehouse_id.code', '=', 'PAR'), ('code', '=', 'incoming')]"/>
+        </record>
+    </data>
+
+    <!-- PATH TO TOULOUSE/STOCK -->
+    <data noupdate="1">
+        <record model="stock.location.path" id="stock_location_path_02">
+            <field name="name">To TOULOUSE</field>
+            <field name="route_id" ref="stock_location_route_02"/>
+            <field name="location_from_id" search="[('name', '=', 'My Company: Transit Location'),
+            ('location_id.name', '=', 'Physical Locations')]"/>
+            <field name="location_dest_id" search="[('name', '=', 'Stock'), ('location_id.name', '=', 'TOU')]"/>
+            <field name="auto">manual</field>
+            <field name="picking_type_id" search="[('warehouse_id.code', '=', 'TOU'), ('code', '=', 'incoming')]"/>
+        </record>
+    </data>
+
+</odoo>

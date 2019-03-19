@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- MAIN COMPANY -->
+    <data noupdate="1">
+        <function name="write" model="ir.model.data">
+            <function name="search" model="ir.model.data">
+                <value eval="[('module', '=', 'base'), ('name', '=', 'main_company')]"/>
+            </function>
+            <value eval="{'noupdate': False}"/>
+        </function>
+
+        <record model="res.company" id="base.main_company">
+            <field name="name">Accessolutions</field>
+            <field name="report_header">Une porte s'ouvre sur l'Accessibilité informatique</field>
+            <field name="street">170, rue Raymond Losserand</field>
+            <field name="zip">75014</field>
+            <field name="city">Paris</field>
+            <field name="country_id" search="[('name', '=', 'France')]"/>
+            <field name="website">http://accessolutions.fr</field>
+            <field name="phone">0143440202</field>
+            <field name="email">contact@accessolutions.fr</field>
+            <field name="vat">FR00453867749</field>
+            <field name="siret">45386774900039</field>
+            <field name="ape">7202A</field>
+        </record>
+
+        <function name="write" model="ir.model.data">
+            <function name="search" model="ir.model.data">
+                <value eval="[('module', '=', 'base'), ('name', '=', 'main_company')]"/>
+            </function>
+            <value eval="{'noupdate': True}"/>
+        </function>
+    </data>
+
+    <!-- MAIN PARTNER -->
+    <data noupdate="1">
+        <function name="write" model="ir.model.data">
+            <function name="search" model="ir.model.data">
+                <value eval="[('module', '=', 'base'), ('name', '=', 'main_partner')]"/>
+            </function>
+            <value eval="{'noupdate': False}"/>
+        </function>
+
+        <record model="res.partner" id="base.main_partner" context="{'default_is_company': True}">
+            <field name="name">Accessolutions</field>
+            <field name="company_id" eval="ref('base.main_company')"/>
+            <field name="customer" eval="False"/>
+            <field name="is_company" eval="True"/>
+            <field name="vat">FR00453867749</field>
+            <field name="street">170, rue Raymond Losserand</field>
+            <field name="city">Paris</field>
+            <field name="zip">75014</field>
+            <field name="country_id" search="[('name', '=', 'France')]"/>
+            <field name="phone">0143440202</field>
+            <field name="email">contact@accessolutions.fr</field>
+            <field name="website">http://accessolutions.fr</field>
+        </record>
+
+        <function name="write" model="ir.model.data">
+            <function name="search" model="ir.model.data">
+                <value eval="[('module', '=', 'base'), ('name', '=', 'main_partner')]"/>
+            </function>
+            <value eval="{'noupdate': True}"/>
+        </function>
+    </data>
+
+    <!-- INFOS@ACCESSOLUTIONS PARTNER -->
+    <data noupdate="1">
+        <record model="res.partner" id="res_partner_01">
+            <field name="name">informations@accessolutions.fr</field>
+            <field name="email">informations@accessolutions.fr</field>
+            <field name="customer" eval="False"/>
+        </record>
+    </data>
+
+    <!-- ACCESSOLUTIONS TOULOUSE PARTNER -->
+    <data noupdate="1">
+        <record model="res.partner" id="res_partner_02">
+            <field name="name">Accessolutions Toulouse</field>
+            <field name="company_type">company</field>
+            <field name="customer" eval="False"/>
+            <field name="street">25 Bd de Larramet</field>
+            <field name="city">TOULOUSE</field>
+            <field name="zip">31300</field>
+            <field name="country_id" search="[('code', '=', 'FR')]"/>
+        </record>
+    </data>
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- MANAGE AUTOMATIC ACTIONS BASED ON RULES -->
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+    <!-- SEND VALIDATED SALE ORDER BY EMAIL -->
+    <data noupdate="1">
+        <record model="base.automation" id="base_automation_01">
+            <field name="name">Envoyer le Bon de Commande par Email</field>
+            <field name="model_id" eval="ref('sale.model_sale_order')"/>
+            <field name="state">email</field>
+            <field name="template_id" eval="ref('sale.email_template_edi_sale')"/>
+            <field name="trigger">on_write</field>
+            <field name="filter_pre_domain" eval="[['state', '!=', 'sale']]"/>
+            <field name="filter_domain" eval="[['state', '=', 'sale']]"/>
+        </record>
+    </data>
+
+    <!-- SEND DONE STOCK PICKING BY EMAIL -->
+    <data noupdate="1">
+        <record model="base.automation" id="base_automation_02">
+            <field name="name">Envoyer le Bon de Livraison par Email</field>
+            <field name="model_id" eval="ref('stock.model_stock_picking')"/>
+            <field name="state">email</field>
+            <field name="template_id" eval="ref('delivery.mail_template_data_delivery_confirmation')"/>
+            <field name="trigger">on_write</field>
+            <field name="filter_pre_domain" eval="[['state', '!=', 'done']]"/>
+            <field name="filter_domain" eval="[['state', '=', 'done']]"/>
+        </record>
+    </data>
+
+</odoo>

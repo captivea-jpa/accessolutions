@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		
+		<!-- ~~~~~~~~~~~~~~~~~~~~~~~ -->
+		<!-- MANAGE DEFAULT SETTINGS -->
+		<!-- ~~~~~~~~~~~~~~~~~~~~~~~ -->
+		
+		<!-- WEBSITE SETTINGS -->
+		<record model="res.config.settings" id="website_settings">
+			<field name="website_name">Accessolutions</field>
+			<field name="auth_signup_uninvited">b2c</field>
+			<field name="group_product_variant" eval="1"/>
+			<field name="group_website_multiimage" eval="1"/>
+			<field name="module_website_sale_digital" eval="1"/>
+			<field name="module_l10n_eu_service" eval="1"/>
+			<field name="group_discount_per_so_line" eval="1"/>
+			<field name="module_website_sale_wishlist" eval="1"/>
+			<field name="salesperson_id" search="[('id', '=', 1)]"/>
+		</record>
+		
+		<!-- EXECUTE THE CODE ABOVE DURING MODULE INSTALLATION -->
+		<function model="res.config.settings" name="execute">
+			<value eval="[ref('website_settings')]"/>
+			<value eval="{}"/>
+		</function>
+		
+	</data>
+</odoo>

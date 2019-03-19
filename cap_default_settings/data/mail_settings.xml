@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		
+		<!-- ~~~~~~~~~~~~~~~~~~~~~~~ -->
+		<!-- MANAGE DEFAULT SETTINGS -->
+		<!-- ~~~~~~~~~~~~~~~~~~~~~~~ -->
+		
+		<!-- MAIL SETTINGS -->
+		<record model="res.config.settings" id="mail_settings">
+			<field name="group_mass_mailing_campaign" eval="1"/>
+		</record>
+		
+		<!-- EXECUTE THE CODE ABOVE DURING MODULE INSTALLATION -->
+		<function model="res.config.settings" name="execute">
+			<value eval="[ref('mail_settings')]"/>
+			<value eval="{}"/>
+		</function>
+		
+	</data>
+</odoo>

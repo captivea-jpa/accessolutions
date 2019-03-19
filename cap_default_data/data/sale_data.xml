@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- MANAGE DEFAULT CRM TEAMS -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+	<!-- VENTE DIRECTE -->
+	<data noupdate="0">
+		<function name="write" model="ir.model.data">
+			<function name="search" model="ir.model.data">
+				<value eval="[('module', '=', 'sales_team'), ('name', '=', 'team_sales_department')]"/>
+			</function>
+			<value eval="{'noupdate': False}"/>
+		</function>
+
+		<record model="crm.team" id="sales_team.team_sales_department">
+			<field name="name">Vente Directe</field>
+			<field name="team_type">sales</field>
+			<field name="use_quotations" eval="True"/>
+			<field name="use_opportunities" eval="True"/>
+		</record>
+	</data>
+
+	<!-- VENTE DIRECTE REVENDEUR -->
+	<data noupdate="1">
+		<record model="crm.team" id="sales_team_02">
+			<field name="name">Vente Directe Revendeur</field>
+			<field name="team_type">sales</field>
+			<field name="use_quotations" eval="True"/>
+			<field name="use_opportunities" eval="True"/>
+		</record>
+	</data>
+
+	<!-- VENTE APPEL D'OFFRES -->
+	<data noupdate="1">
+		<record model="crm.team" id="sales_team_03">
+			<field name="name">Vente Appel d'offres</field>
+			<field name="team_type">sales</field>
+			<field name="use_quotations" eval="True"/>
+			<field name="use_opportunities" eval="True"/>
+		</record>
+	</data>
+
+	<!-- VENTE DIRECTE OPTICIEN -->
+	<data noupdate="1">
+		<record model="crm.team" id="sales_team_04">
+			<field name="name">Vente Directe Opticien</field>
+			<field name="team_type">sales</field>
+			<field name="use_quotations" eval="True"/>
+			<field name="use_opportunities" eval="True"/>
+		</record>
+	</data>
+
+	<!-- VENTE SITE WEB B2C -->
+	<data noupdate="0">
+		<function name="write" model="ir.model.data">
+			<function name="search" model="ir.model.data">
+				<value eval="[('module', '=', 'sales_team'), ('name', '=', 'salesteam_website_sales')]"/>
+			</function>
+			<value eval="{'noupdate': False}"/>
+		</function>
+
+		<record model="crm.team" id="sales_team.salesteam_website_sales">
+			<field name="name">Vente Site Web B2C</field>
+			<field name="team_type">website</field>
+			<field name="use_quotations" eval="False"/>
+			<field name="use_opportunities" eval="False"/>
+		</record>
+	</data>
+
+	<!-- VENTE SITE WEB B2B REVENDEUR -->
+	<data noupdate="1">
+		<record model="crm.team" id="sales_team_06">
+			<field name="name">Vente Site Web B2B Revendeur</field>
+			<field name="team_type">website</field>
+			<field name="use_quotations" eval="False"/>
+			<field name="use_opportunities" eval="False"/>
+		</record>
+	</data>
+
+	<!-- VENTE SITE WEB B2B OPTICIEN -->
+	<data noupdate="1">
+		<record model="crm.team" id="sales_team_07">
+			<field name="name">Vente Site Web B2B Opticien</field>
+			<field name="team_type">website</field>
+			<field name="use_quotations" eval="False"/>
+			<field name="use_opportunities" eval="False"/>
+		</record>
+	</data>
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- MANAGE DEFAULT SEQUENCES -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+	<!-- CHANGE THE SALE ORDER SEQUENCE -->
+	<data noupdate="1">
+		<function name="write" model="ir.model.data">
+			<function name="search" model="ir.model.data">
+				<value eval="[('module', '=', 'sale'), ('name', '=', 'seq_sale_order')]"/>
+			</function>
+			<value eval="{'noupdate': False}"/>
+		</function>
+
+		<record model="ir.sequence" id="sale.seq_sale_order">
+			<field name="prefix">AS-%(year)s-</field>
+			<field name="padding">6</field>
+		</record>
+
+		<function name="write" model="ir.model.data">
+			<function name="search" model="ir.model.data">
+				<value eval="[('module', '=', 'sale'), ('name', '=', 'seq_sale_order')]"/>
+			</function>
+			<value eval="{'noupdate': True}"/>
+		</function>
+	</data>
+	
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- MANAGE DEFAULT PRINTED PDF FILENAME -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	
+	<!-- DEVIS ET COMMANDES -->
+	<data noupdate="1">
+		<function name="write" model="ir.actions.report">
+			<function name="search" model="ir.actions.report">
+				<value eval="[('report_name', '=', 'sale.report_saleorder')]"/>
+			</function>
+			<value eval="{'print_report_name': 'object.name'}"/>
+		</function>
+	</data>
+	
+	<!-- FACTURE PRO-FORMA -->
+	<data noupdate="1">
+		<function name="write" model="ir.actions.report">
+			<function name="search" model="ir.actions.report">
+				<value eval="[('report_name', '=', 'sale.report_saleorder_pro_forma')]"/>
+			</function>
+			<value eval="{'print_report_name': 'object.name'}"/>
+		</function>
+	</data>
+
+</odoo>

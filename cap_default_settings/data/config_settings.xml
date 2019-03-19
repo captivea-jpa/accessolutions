@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		
+		<!-- ~~~~~~~~~~~~~~~~~~~~~~~ -->
+		<!-- MANAGE DEFAULT SETTINGS -->
+		<!-- ~~~~~~~~~~~~~~~~~~~~~~~ -->
+		
+		<!-- CONFIG SETTINGS -->
+		<record model="res.config.settings" id="config_settings">
+			<field name="default_external_email_server" eval="1"/>
+			<field name="auth_signup_reset_password" eval="1"/>
+		</record>
+		
+		<!-- EXECUTE THE CODE ABOVE DURING MODULE INSTALLATION -->
+		<function model="res.config.settings" name="execute">
+			<value eval="[ref('config_settings')]"/>
+			<value eval="{}"/>
+		</function>
+		
+	</data>
+</odoo>

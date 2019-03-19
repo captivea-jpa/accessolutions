@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- MANAGE DEFAULT SEQUENCES -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+	<!-- FACTURES CLIENTS (NOT SAFE) -->
+	<data noupdate="1">
+		<function name="write" model="ir.sequence">
+			<function name="search" model="ir.sequence">
+				<value eval="[('name', '=', 'Factures clients')]"/>
+			</function>
+			<value eval="{'prefix': 'FAC-%(year)s-', 'padding': 6, 'use_date_range': False}"/>
+		</function>
+	</data>
+
+	<!-- FACTURES FOURNISSEURS (NOT SAFE) -->
+	<data noupdate="1">
+		<function name="write" model="ir.sequence">
+			<function name="search" model="ir.sequence">
+				<value eval="[('name', '=', 'Factures fournisseur')]"/>
+			</function>
+			<value eval="{'prefix': 'INV-%(year)s-', 'padding': 6, 'use_date_range': False}"/>
+		</function>
+	</data>
+	
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- MANAGE DEFAULT PRINTED PDF FILENAME -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	
+	<!-- FACTURES AVEC PAIEMENT -->
+	<data noupdate="1">
+		<function name="write" model="ir.actions.report">
+			<function name="search" model="ir.actions.report">
+				<value eval="[('report_name', '=', 'account.report_invoice_with_payments')]"/>
+			</function>
+			<value eval="{'print_report_name': 'object.number', 'attachment': 'object.state in (\'open\',\'paid\') and object.number + \'.pdf\''}"/>
+		</function>
+	</data>
+	
+	<!-- FACTURES SANS PAIEMENT -->
+	<data noupdate="1">
+		<function name="write" model="ir.actions.report">
+			<function name="search" model="ir.actions.report">
+				<value eval="[('report_name', '=', 'account.report_invoice')]"/>
+			</function>
+			<value eval="{'print_report_name': 'object.number', 'attachment': 'object.state in (\'open\',\'paid\') and object.number + \'.pdf\''}"/>
+		</function>
+	</data>
+
+</odoo>

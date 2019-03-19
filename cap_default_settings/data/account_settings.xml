@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		
+		<!-- ~~~~~~~~~~~~~~~~~~~~~~~ -->
+		<!-- MANAGE DEFAULT SETTINGS -->
+		<!-- ~~~~~~~~~~~~~~~~~~~~~~~ -->
+		
+		<!-- ACCOUNT SETTINGS -->
+		<record model="res.config.settings" id="account_settings">
+			<field name="group_multi_currency" eval="1"/>
+			<field name="module_currency_rate_live" eval="1"/>
+			<field name="currency_interval_unit">daily</field>
+			<field name="module_account_sepa" eval="0"/>
+			<field name="module_account_budget" eval="1"/>
+			<field name="group_analytic_accounting" eval="1"/>
+			<field name="group_analytic_account_for_purchases" eval="1"/>
+		</record>
+
+		<!-- EXECUTE THE CODE ABOVE DURING MODULE INSTALLATION -->
+		<function model="res.config.settings" name="execute">
+			<value eval="[ref('account_settings')]"/>
+			<value eval="{}"/>
+		</function>
+		
+	</data>
+</odoo>

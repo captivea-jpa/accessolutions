@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!-- MANAGE DEFAULT SETTINGS -->
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+        <!-- SALE SETTINGS -->
+        <record model="res.config.settings" id="sale_settings">
+            <field name="sale_show_tax">total</field>
+            <field name="multi_sales_price" eval="1"/>
+            <field name="multi_sales_price_method">formula</field>
+            <field name="sale_pricelist_setting">formula</field>
+            <field name="use_sale_note" eval="1"/>
+        </record>
+
+        <!-- EXECUTE THE CODE ABOVE DURING MODULE INSTALLATION -->
+        <function model="res.config.settings" name="execute">
+            <value eval="[ref('sale_settings')]"/>
+            <value eval="{}"/>
+        </function>
+
+    </data>
+</odoo>

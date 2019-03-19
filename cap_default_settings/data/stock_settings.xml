@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		
+		<!-- ~~~~~~~~~~~~~~~~~~~~~~~ -->
+		<!-- MANAGE DEFAULT SETTINGS -->
+		<!-- ~~~~~~~~~~~~~~~~~~~~~~~ -->
+		
+		<!-- STOCK SETTINGS -->
+		<record model="res.config.settings" id="stock_settings">
+			<field name="module_stock_barcode" eval="1"/>
+			<field name="group_stock_multi_locations" eval="1"/>
+			<field name="group_stock_multi_warehouses" eval="1"/>
+			<field name="module_delivery_ups" eval="1"/>
+			<field name="module_stock_picking_batch" eval="1"/>
+			<field name="group_stock_production_lot" eval="1"/>
+			<field name="default_picking_policy">one</field>
+			<field name="group_product_variant" eval="1"/>
+            <field name="group_stock_adv_location" eval="1"/>
+		</record>
+		
+		<!-- EXECUTE THE CODE ABOVE DURING MODULE INSTALLATION -->
+		<function model="res.config.settings" name="execute">
+			<value eval="[ref('stock_settings')]"/>
+			<value eval="{}"/>
+		</function>
+		
+	</data>
+</odoo>
