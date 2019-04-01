@@ -16,5 +16,5 @@
              'data/stock_settings.xml',
              'data/website_settings.xml'],
     'installable': True,
-    'post_init_hook': 'post_init_hook'
+    'pre_init_hook': 'pre_init_hook'
 }
