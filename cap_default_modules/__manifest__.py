@@ -17,6 +17,7 @@
                 'contacts',
                 'crm',
                 'delivery_ups',
+                'document',
                 'mail',
                 'mass_mailing',
                 'mrp_repair',
