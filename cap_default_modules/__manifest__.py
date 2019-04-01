@@ -26,5 +26,6 @@
                 'stock_barcode',
                 'website',
                 'website_sale'],
-    'installable': True
+    'installable': True,
+    'pre_init_hook': "pre_init_hook"
 }
