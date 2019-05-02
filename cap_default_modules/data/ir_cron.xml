@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- MANAGE 'IR.CRON' DEFAULT DATA -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <data>
+
+        <!-- AUTOMATIC DOCUMENT MODULE INSTALLATION -->
+        <record model="ir.cron" id="ir_cron_01">
+            <field name="name">Automatic Document Module Installation</field>
+            <field name="active">1</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="numbercall">1</field>
+            <field name="doall">1</field>
+            <field name="model_id" ref="base.model_ir_module_module"/>
+            <field name="state">code</field>
+            <field name="code"><![CDATA[
+
+# Available variables:
+#  - env: Odoo Environment on which the action is triggered
+#  - model: Odoo Model of the record on which the action is triggered; is a void recordset
+#  - record: record on which the action is triggered; may be be void
+#  - records: recordset of all records on which the action is triggered in multi-mode; may be void
+#  - time, datetime, dateutil, timezone: useful Python libraries
+#  - log: log(message, level='info'): logging function to record debug information in ir.logging table
+#  - Warning: Warning Exception to use with raise
+# To return an action, assign: action = {...}
+
+module_id = env['ir.module.module'].search([("name", "=", "document")], limit=1)
+module_id.button_install()
+env['base.module.upgrade'].create({}).upgrade_module()
+
+            ]]></field>
+        </record>
+
+    </data>
+</odoo>
