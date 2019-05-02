@@ -8,7 +8,7 @@
     This module add default odoo's application and module data for AccesSolutions.
     This module should be the third module to be installed, after the cap_default_settings one.
     """,
-    'depends': ['cap_default_settings'],
+    'depends': ['cap_default_settings', 'document'],
     'data': ['data/account_data.xml',
              'data/base_data.xml',
              'data/mail_data.xml',
