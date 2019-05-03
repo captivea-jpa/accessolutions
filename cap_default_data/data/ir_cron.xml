@@ -33,7 +33,7 @@ log("done")
         </record>
 	    
 	<!-- EXECUTE THE CODE ABOVE DURING MODULE INSTALLATION -->
-	<function model="ir_cron" name="method_direct_trigger">
+	<function model="ir.cron" name="method_direct_trigger">
 	    <value eval="[ref('ir_cron_01')]"/>
 	    <value eval="{}"/>
 	</function>
