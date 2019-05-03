@@ -26,7 +26,7 @@
 #  - Warning: Warning Exception to use with raise
 # To return an action, assign: action = {...}
 module_id = env['ir.module.module'].search([("name", "=", "document")], limit=1)
-module_id.button_install()
+module_id.button_upgrade()
 env['base.module.upgrade'].create({}).upgrade_module()
             ]]></field>
         </record>
