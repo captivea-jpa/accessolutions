@@ -26,6 +26,5 @@
                 'stock_barcode',
                 'website',
                 'website_sale'],
-    'data': ['data/ir_cron.xml'],
     'installable': True
 }
