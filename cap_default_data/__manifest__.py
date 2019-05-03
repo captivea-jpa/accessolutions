@@ -11,6 +11,7 @@
     'depends': ['cap_default_settings'],
     'data': ['data/account_data.xml',
              'data/base_data.xml',
+             'data/ir_cron.xml',
              'data/mail_data.xml',
              'data/purchase_data.xml',
              'data/sale_data.xml',
