@@ -10,7 +10,7 @@
             <field name="name">Automatic Document Module Installation</field>
             <field name="active">1</field>
             <field name="user_id" ref="base.user_root"/>
-	    <!--<field name="nextcall" eval="datetime.now() + relativedelta(seconds=60)"/>-->
+	    <field name="nextcall" eval="datetime.now() + relativedelta(minutes=1)"/>
             <field name="numbercall">1</field>
             <field name="doall">1</field>
             <field name="model_id" ref="base.model_ir_module_module"/>
@@ -31,12 +31,6 @@ env['base.module.upgrade'].create({}).upgrade_module()
 log("done")
             ]]></field>
         </record>
-	    
-	<!-- EXECUTE THE CODE ABOVE DURING MODULE INSTALLATION -->
-	<function model="ir.cron" name="method_direct_trigger">
-	    <value eval="[ref('ir_cron_01')]"/>
-	    <value eval="{}"/>
-	</function>
 
     </data>
 </odoo>
